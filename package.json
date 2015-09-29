@@ -1,0 +1,30 @@
+{
+  "name": "lambda_scaffold",
+  "version": "0.0.1",
+  "description": "How we have standardised our lambda projects at Simple Merchant",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simplemerchant/lambda_scaffold.git"
+  },
+  "author": "Simple Merchant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simplemerchant/lambda_scaffold/issues"
+  },
+  "homepage": "https://github.com/simplemerchant/lambda_scaffold#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-aws-lambda": "^0.10.0",
+    "grunt-cli": "^0.1.13",
+    "grunt-jscs": "^2.1.0",
+    "grunt-pack": "^0.1.5",
+    "grunt-writefile": "^0.1.2"
+  },
+  "dependencies": {
+    "dotenv": "^1.2.0"
+  }
+}
