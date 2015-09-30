@@ -1,7 +1,17 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-aws-lambda');
   grunt.loadNpmTasks('grunt-writefile');
+  grunt.loadNpmTasks('grunt-jscs');
   grunt.initConfig({
+    jscs: {
+      src: './*.js',
+      options: {
+        config: '.jscsrc',
+        esnext: false,
+        verbose: true,
+        requireCurlyBraces: [],
+      },
+    },
     writefile: {
       options: {
         data: {
@@ -35,8 +45,12 @@ module.exports = function(grunt) {
       },
     },
   });
+  grunt.registerTask('run', ['jscs', 'lambda_invoke']);
+  grunt.registerTask('check', ['jscs']);
   grunt.registerTask('config', ['writefile']);
-  grunt.registerTask('run', ['config', 'lambda_invoke']);
-  grunt.registerTask('build', ['config', 'lambda_package']);
+
+  grunt.registerTask('build', ['jscs', 'config', 'lambda_package']);
+  grunt.registerTask('build-nochecks', ['config', 'lambda_package']);
   grunt.registerTask('deploy', ['build', 'lambda_deploy']);
+  grunt.registerTask('deploy-nochecks', ['build-nochecks', 'lambda_deploy']);
 };
