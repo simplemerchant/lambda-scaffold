@@ -45,12 +45,17 @@ module.exports = function(grunt) {
       },
     },
   });
-  grunt.registerTask('run', ['jscs', 'lambda_invoke']);
+
   grunt.registerTask('check', ['jscs']);
+
+  grunt.registerTask('run', ['check', 'lambda_invoke']);
+  grunt.registerTask('run-nochecks', ['lambda_invoke']);
+
   grunt.registerTask('config', ['writefile']);
 
-  grunt.registerTask('build', ['jscs', 'config', 'lambda_package']);
   grunt.registerTask('build-nochecks', ['config', 'lambda_package']);
-  grunt.registerTask('deploy', ['build', 'lambda_deploy']);
+  grunt.registerTask('build', ['check', 'build-nochecks']);
+
   grunt.registerTask('deploy-nochecks', ['build-nochecks', 'lambda_deploy']);
+  grunt.registerTask('deploy', ['build', 'lambda_deploy']);
 };
