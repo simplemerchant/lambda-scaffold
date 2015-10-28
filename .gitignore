@@ -3,6 +3,7 @@
 # Project config
 event.json
 .env
+.events/
 
 # Vagrant
 .vagrant/
