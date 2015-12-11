@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     lambda_package: {
       default: {
         options: {
-          include_files: ['.env'],
+          include_files: ['.env', './app/**'],
         },
       },
     },
