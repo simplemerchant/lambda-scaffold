@@ -1,10 +1,13 @@
 {
   "name": "lambda_scaffold",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "How we have standardised our lambda projects at Simple Merchant",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "./node_modules/.bin/jshint *.js ./app/*.js ./test/*.js --reporter=./node_modules/jshint-full-path/index.js",
+    "pretest": "npm run-script lint",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive -R spec -r should",
+    "posttest": "./node_modules/.bin/istanbul check-coverage && rm -rf coverage"
   },
   "repository": {
     "type": "git",
@@ -22,7 +25,12 @@
     "grunt-cli": "^0.1.13",
     "grunt-jscs": "^2.1.0",
     "grunt-pack": "^0.1.5",
-    "grunt-writefile": "^0.1.2"
+    "grunt-writefile": "^0.1.2",
+    "istanbul": "^0.4.1",
+    "jshint": "^2.9.1-rc1",
+    "jshint-full-path": "^1.1.1",
+    "mocha": "^2.3.4",
+    "should": "^7.1.1"
   },
   "dependencies": {
     "dotenv": "^1.2.0"
